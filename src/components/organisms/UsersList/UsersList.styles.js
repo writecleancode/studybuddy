@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
 	border-radius: 25px;
 	width: 100%;
 	max-width: 500px;
-	background-color: #fff;
+	background-color: ${({ theme }) => theme.colors.white};
 	box-shadow: 0 5px 15px -10px rgba(0, 0, 0, 0.3);
 `;
 
