@@ -1,11 +1,15 @@
 import { UsersList } from 'components/organisms/UsersList/UsersList';
 import { Wrapper } from './Root.styles';
+import { GlobalStyle } from 'assets/styles/GlobalStyle';
 
 const Root = () => {
 	return (
-		<Wrapper>
-			<UsersList />
-		</Wrapper>
+		<>
+			<GlobalStyle />
+			<Wrapper>
+				<UsersList />
+			</Wrapper>
+		</>
 	);
 };
 
