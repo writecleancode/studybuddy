@@ -1,16 +1,14 @@
 import PropTypes from 'prop-types';
-import { StyledListItem } from './UsersListItem.styles';
-
+import { StyledListItem, StyledAverage } from './UsersListItem.styles';
+import { StyledInfo } from 'components/atoms/StyledInfo/StyledInfo';
+import { DeleteButton } from 'components/atoms/DeleteButton/DeleteButton';
 
 export const UsersListItem = ({ userData: { name, average, attendance = '0%' } }) => {
 	return (
 		<StyledListItem>
-			<div>{average}</div>
-			<div>
-				<p>{name}</p>
-				<p>attendance: {attendance}</p>
-			</div>
-			<button>X</button>
+			<StyledAverage $average={average}>{average}</StyledAverage>
+			<StyledInfo name={name} attendance={attendance} />
+			<DeleteButton />
 		</StyledListItem>
 	);
 };
