@@ -17,6 +17,7 @@ const mockAPI = success => {
 
 export const UsersList = () => {
 	const [users, setUsers] = useState([]);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const deleteUser = name => {
 		const filteredUsers = users.filter(user => user.name !== name);
@@ -24,14 +25,19 @@ export const UsersList = () => {
 	};
 
 	useEffect(() => {
+		setIsLoading(true);
 		mockAPI()
-			.then(data => setUsers(data))
+			.then(data => {
+				setUsers(data);
+				setIsLoading(false);
+			})
 			.catch(err => console.log(err));
 	}, []);
 
 	return (
 		<Wrapper>
 			<StyledList>
+				<h1>{isLoading ? 'Loading...' : "Student's list"}</h1>
 				{users.map(userData => {
 					return <UsersListItem key={userData.name} userData={userData} deleteUser={deleteUser} />;
 				})}
