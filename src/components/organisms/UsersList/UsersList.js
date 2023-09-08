@@ -6,8 +6,8 @@ export const UsersList = () => {
 	return (
 		<Wrapper>
 			<StyledList>
-				{users.map(userData => {
-					return <UsersListItem key={userData.name} userData={userData} />;
+				{users.map((userData, index) => {
+					return <UsersListItem key={userData.name} userData={userData} index={index} />;
 				})}
 			</StyledList>
 		</Wrapper>
