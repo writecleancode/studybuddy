@@ -21,18 +21,46 @@ export const UsersList = () => {
 	const handleInputChange = e => {
 		setFormValues({
 			...formValues,
-			[e.target.name]: [e.target.value],
+			[e.target.name]: e.target.value,
 		});
+	};
+
+	const handleAddUser = e => {
+		e.preventDefault();
+		const newUser = {
+			name: formValues.name,
+			attendance: formValues.attendance,
+			average: formValues.average,
+		};
+
+		setUsers([newUser, ...users]);
 	};
 
 	return (
 		<>
-			<Wrapper>
+			<Wrapper as='form' onSubmit={handleAddUser}>
 				<StyledTitle>Add new student</StyledTitle>
-				<FormField label='Name' id='name' name='name' value={formValues.name} onChange={handleInputChange} />
-				<FormField label='Attendance' id='attendance' name='attendance' value={formValues.attendance} onChange={handleInputChange} />
-				<FormField label='Average' id='average' name='average' value={formValues.average} onChange={handleInputChange} />
-				<Button>Add</Button>
+				<FormField label='Name'
+					id='name'
+					name='name'
+					value={formValues.name}
+					onChange={handleInputChange}
+				/>
+				<FormField
+					label='Attendance'
+					id='attendance'
+					name='attendance'
+					value={formValues.attendance}
+					onChange={handleInputChange}
+				/>
+				<FormField
+					label='Average'
+					id='average'
+					name='average'
+					value={formValues.average}
+					onChange={handleInputChange}
+				/>
+				<Button type='submit'>Add</Button>
 			</Wrapper>
 			<Wrapper>
 				<StyledList>

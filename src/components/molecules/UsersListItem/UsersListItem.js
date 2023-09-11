@@ -19,4 +19,5 @@ UsersListItem.propTypes = {
 		average: PropTypes.string.isRequired,
 		attendance: PropTypes.string,
 	}),
+	deleteUser: PropTypes.func,
 };
