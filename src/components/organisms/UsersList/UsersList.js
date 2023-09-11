@@ -34,13 +34,19 @@ export const UsersList = () => {
 		};
 
 		setUsers([newUser, ...users]);
+		setFormValues({
+			name: '',
+			attendance: '',
+			average: '',
+		});
 	};
 
 	return (
 		<>
 			<Wrapper as='form' onSubmit={handleAddUser}>
 				<StyledTitle>Add new student</StyledTitle>
-				<FormField label='Name'
+				<FormField
+					label='Name'
 					id='name'
 					name='name'
 					value={formValues.name}
