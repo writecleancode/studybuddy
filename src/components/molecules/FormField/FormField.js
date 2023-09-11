@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 	align-items: flex-start;
 `;
 
-export const FormField = ({ label, name, id, type = 'string', value, onChange, ...props }) => {
+export const FormField = ({ label, name, id, type = 'text', value, onChange, ...props }) => {
 	return (
 		<Wrapper>
 			<Label htmlFor={id}>{label}</Label>
@@ -23,6 +23,6 @@ FormField.propTypes = {
 	name: PropTypes.string.isRequired,
 	id: PropTypes.string.isRequired,
 	type: PropTypes.string,
-	value: PropTypes.string,
-	onChage: PropTypes.func,
+	value: PropTypes.string.isRequired,
+	onChange: PropTypes.func.isRequired,
 };

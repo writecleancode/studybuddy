@@ -17,7 +17,7 @@ export const Logo = styled.div`
 	width: 100%;
 	background-color: ${({ theme }) => theme.colors.darkGrey};
 
-	h1 {
+	p {
 		margin-right: 24px;
 		margin-left: auto;
 		padding-top: 10px;
@@ -25,6 +25,7 @@ export const Logo = styled.div`
 		width: min-content;
 		color: ${({ theme }) => theme.colors.white};
 		font-size: ${({ theme }) => theme.fontSize.l};
+		font-weight: bold;
 		text-align: right;
 	}
 `;

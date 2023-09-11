@@ -1,12 +1,12 @@
 import { Logo, StyledLink, Wrapper } from './Navigation.styles';
 
-export const Navigation = params => {
+export const Navigation = () => {
 	return (
 		<Wrapper>
 			<Logo>
-				<h1>Study Buddy</h1>
+				<p>Study Buddy</p>
 			</Logo>
-			<StyledLink to='/'>Home</StyledLink>
+			<StyledLink to='/'>Dashboard</StyledLink>
 			<StyledLink to='/add-user'>Add user</StyledLink>
 		</Wrapper>
 	);

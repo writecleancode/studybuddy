@@ -5,9 +5,9 @@ import { theme } from 'assets/styles/theme';
 import { users as usersData } from 'data/users';
 import { GlobalStyle } from 'assets/styles/GlobalStyle';
 import { Wrapper } from './Root.styles';
-import { UsersList } from 'components/organisms/UsersList/UsersList';
-import { Form } from 'components/organisms/Form/Form';
 import { MainTemplate } from 'components/templates/MainTemplate/MainTemplate';
+import { AddUser } from './AddUser';
+import { Dashboard } from './Dashboard';
 
 const initialFormState = {
 	name: '',
@@ -50,11 +50,11 @@ const Root = () => {
 				<MainTemplate>
 					<Wrapper>
 						<Routes>
-							<Route path='/' element={<UsersList users={users} deleteUser={deleteUser} />} />
+							<Route path='/' element={<Dashboard users={users} deleteUser={deleteUser} />} />
 							<Route
 								path='/add-user'
 								element={
-									<Form handleAddUser={handleAddUser} formValues={formValues} handleInputChange={handleInputChange} />
+									<AddUser handleAddUser={handleAddUser} formValues={formValues} handleInputChange={handleInputChange} />
 								}
 							/>
 						</Routes>
