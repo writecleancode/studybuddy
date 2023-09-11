@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+	margin: 25px;
 	padding: 32px 64px;
 	border-radius: 25px;
 	width: 100%;
@@ -11,4 +12,10 @@ export const Wrapper = styled.div`
 
 export const StyledList = styled.ul`
 	list-style: none;
+`;
+
+export const StyledTitle = styled.h1`
+	margin-bottom: 24px;
+	color: ${({ theme }) => theme.colors.darkGrey};
+	font-size: ${({ theme }) => theme.fontSize.xl};
 `;
