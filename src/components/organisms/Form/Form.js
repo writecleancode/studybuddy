@@ -1,5 +1,5 @@
 import { StyledTitle, Wrapper } from '../UsersList/UsersList.styles';
-import { FormField } from 'components/molecules/UsersListItem/FormField/FormField';
+import { FormField } from 'components/molecules/FormField/FormField';
 import { Button } from 'components/atoms/Button/Button';
 
 export const Form = ({ handleAddUser, formValues, handleInputChange }) => {
