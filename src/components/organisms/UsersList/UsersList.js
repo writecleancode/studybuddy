@@ -5,13 +5,15 @@ import { useState } from 'react';
 import { FormField } from 'components/molecules/UsersListItem/FormField/FormField';
 import { Button } from 'components/atoms/Button/Button';
 
+const initialFormState = {
+	name: '',
+	attendance: '',
+	average: '',
+};
+
 export const UsersList = () => {
 	const [users, setUsers] = useState(usersData);
-	const [formValues, setFormValues] = useState({
-		name: '',
-		attendance: '',
-		average: '',
-	});
+	const [formValues, setFormValues] = useState(initialFormState);
 
 	const deleteUser = name => {
 		const filteredUsers = users.filter(user => user.name !== name);
@@ -34,11 +36,7 @@ export const UsersList = () => {
 		};
 
 		setUsers([newUser, ...users]);
-		setFormValues({
-			name: '',
-			attendance: '',
-			average: '',
-		});
+		setFormValues(initialFormState);
 	};
 
 	return (
