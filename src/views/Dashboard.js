@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
 import { UsersList } from 'components/organisms/UsersList/UsersList';
+import { UserShape } from 'types';
 
 export const Dashboard = ({ users, deleteUser }) => {
 	return (
@@ -11,6 +12,6 @@ export const Dashboard = ({ users, deleteUser }) => {
 };
 
 Dashboard.propTypes = {
-	users: PropTypes.arrayOf(PropTypes.shape()),
+	users: PropTypes.arrayOf(PropTypes.shape(UserShape)),
 	deleteUser: PropTypes.func,
 };

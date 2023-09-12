@@ -3,6 +3,7 @@ import { StyledTitle } from 'components/atoms/StyledTitle/StyledTitle';
 import { FormField } from 'components/molecules/FormField/FormField';
 import { Button } from 'components/atoms/Button/Button';
 import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
+import { UserShape } from 'types';
 
 export const AddUser = ({ handleAddUser, formValues, handleInputChange }) => {
 	return (
@@ -24,10 +25,6 @@ export const AddUser = ({ handleAddUser, formValues, handleInputChange }) => {
 
 AddUser.propTypes = {
 	handleAddUser: PropTypes.func.isRequired,
-	formValues: PropTypes.shape({
-		name: PropTypes.string.isRequired,
-		attendance: PropTypes.string,
-		average: PropTypes.string.isRequired,
-	}),
+	formValues: PropTypes.shape(UserShape),
 	handleInputChange: PropTypes.func.isRequired,
 };
