@@ -1,22 +1,19 @@
-import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import { UsersContext } from 'views/Root';
 import { UsersListItem } from 'components/molecules/UsersListItem/UsersListItem';
 import { StyledList, StyledTitle } from './UsersList.styles';
-import { UserShape } from 'types';
 
-export const UsersList = ({ users, deleteUser }) => {
+export const UsersList = () => {
+	const { users } = useContext(UsersContext);
+
 	return (
 		<>
 			<StyledList>
 				<StyledTitle>Student's list</StyledTitle>
 				{users.map(userData => {
-					return <UsersListItem key={userData.name} userData={userData} deleteUser={deleteUser} />;
+					return <UsersListItem key={userData.name} userData={userData} />;
 				})}
 			</StyledList>
 		</>
 	);
-};
-
-UsersList.propTypes = {
-	users: PropTypes.arrayOf(PropTypes.shape(UserShape)),
-	deleteUser: PropTypes.func,
 };

@@ -46,7 +46,7 @@ const Root = () => {
 						}}>
 						<Wrapper>
 							<Routes>
-								<Route path='/' element={<Dashboard users={users} deleteUser={deleteUser} />} />
+								<Route path='/' element={<Dashboard deleteUser={deleteUser} />} />
 								<Route path='/add-user' element={<AddUser />} />
 							</Routes>
 						</Wrapper>
