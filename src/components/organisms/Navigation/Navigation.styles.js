@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Wrapper = styled.nav`
@@ -6,7 +6,7 @@ export const Wrapper = styled.nav`
 	flex-direction: column;
 	align-items: flex-end;
 	padding-top: 32px;
-    padding-bottom: 32px;
+	padding-bottom: 32px;
 	border-right: 1px solid ${({ theme }) => theme.colors.darkPurple};
 `;
 
@@ -30,10 +30,30 @@ export const Logo = styled.div`
 	}
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(NavLink)`
+	position: relative;
 	margin: 6px 20px;
-    padding: 6px 12px;
+	padding: 6px 12px;
 	color: ${({ theme }) => theme.colors.darkGrey};
 	font-weight: bold;
 	text-decoration: none;
+
+	&.active {
+		&::after {
+			opacity: 1;
+		}
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		right: -20px;
+		translate: 0 -50%;
+		width: 24px;
+		height: 4px;
+		background-color: ${({ theme }) => theme.colors.darkPurple};
+		opacity: 0;
+		transition: opacity 0.4s ease-in-out;
+	}
 `;
