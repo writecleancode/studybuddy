@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { UsersContext } from './Root';
+import { UsersContext } from 'providers/UsersProvider';
 import { StyledTitle } from 'components/atoms/StyledTitle/StyledTitle';
 import { FormField } from 'components/molecules/FormField/FormField';
 import { Button } from 'components/atoms/Button/Button';
