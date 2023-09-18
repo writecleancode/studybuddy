@@ -76,7 +76,7 @@ export const AddUser = () => {
 				id='consent'
 				name='consent'
 				type='checkbox'
-				value={formValues.consent}
+				checked={formValues.consent}
 				onChange={() => {
 					dispatch({ type: 'CONSENT TOGGLE' });
 				}}
