@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useReducer, useState } from 'react';
 import { UsersContext } from 'providers/UsersProvider';
 import { StyledTitle } from 'components/atoms/StyledTitle/StyledTitle';
 import { FormField } from 'components/molecules/FormField/FormField';
@@ -11,21 +11,34 @@ const initialFormState = {
 	average: '',
 };
 
+const reducer = (state, action) => {
+	switch (action.type) {
+		case 'INPUT CHANGE':
+			return {
+				...state,
+				[action.field]: action.value,
+			};
+		default:
+			return state;
+	}
+};
+
 export const AddUser = () => {
-	const [formValues, setFormValues] = useState(initialFormState);
+	const [formValues, dispatch] = useReducer(reducer, initialFormState);
 	const { handleAddUser } = useContext(UsersContext);
 
 	const handleInputChange = e => {
-		setFormValues({
-			...formValues,
-			[e.target.name]: e.target.value,
+		dispatch({
+			type: 'INPUT CHANGE',
+			field: e.target.name,
+			value: e.target.value,
 		});
 	};
 
 	const handleSubmitUser = e => {
 		e.preventDefault();
 		handleAddUser(formValues);
-		setFormValues(initialFormState);
+		// setFormValues(initialFormState);
 	};
 
 	return (
