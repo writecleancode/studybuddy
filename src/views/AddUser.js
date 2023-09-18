@@ -13,21 +13,28 @@ const initialFormState = {
 	error: '',
 };
 
+const actionTypes = {
+	inputChange: 'INPUT CHANGE',
+	clearValues: 'CLEAR VALUES',
+	consentToggle: 'CONSENT TOGGLE',
+	throwError: 'THROW ERROR',
+};
+
 const reducer = (state, action) => {
 	switch (action.type) {
-		case 'INPUT CHANGE':
+		case actionTypes.inputChange:
 			return {
 				...state,
 				[action.field]: action.value,
 			};
-		case 'CLEAR VALUES':
+		case actionTypes.clearValues:
 			return initialFormState;
-		case 'CONSENT TOGGLE':
+		case actionTypes.consentToggle:
 			return {
 				...state,
 				consent: !state.consent,
 			};
-		case 'THROW ERROR':
+		case actionTypes.throwError:
 			return {
 				...state,
 				error: action.errorValue,
