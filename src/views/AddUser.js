@@ -1,4 +1,4 @@
-import { useContext, useReducer, useState } from 'react';
+import { useContext, useReducer } from 'react';
 import { UsersContext } from 'providers/UsersProvider';
 import { StyledTitle } from 'components/atoms/StyledTitle/StyledTitle';
 import { FormField } from 'components/molecules/FormField/FormField';
@@ -18,6 +18,8 @@ const reducer = (state, action) => {
 				...state,
 				[action.field]: action.value,
 			};
+		case 'CLEAR VALUES':
+			return initialFormState;
 		default:
 			return state;
 	}
@@ -38,7 +40,7 @@ export const AddUser = () => {
 	const handleSubmitUser = e => {
 		e.preventDefault();
 		handleAddUser(formValues);
-		// setFormValues(initialFormState);
+		dispatch({ type: 'CLEAR VALUES' });
 	};
 
 	return (
