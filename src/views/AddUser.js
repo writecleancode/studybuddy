@@ -9,6 +9,8 @@ const initialFormState = {
 	name: '',
 	attendance: '',
 	average: '',
+	consent: false,
+	error: '',
 };
 
 const reducer = (state, action) => {
@@ -20,6 +22,16 @@ const reducer = (state, action) => {
 			};
 		case 'CLEAR VALUES':
 			return initialFormState;
+		case 'CONSENT TOGGLE':
+			return {
+				...state,
+				consent: !state.consent,
+			};
+		case 'THROW ERROR':
+			return {
+				...state,
+				error: action.errorValue,
+			};
 		default:
 			return state;
 	}
@@ -39,8 +51,12 @@ export const AddUser = () => {
 
 	const handleSubmitUser = e => {
 		e.preventDefault();
-		handleAddUser(formValues);
-		dispatch({ type: 'CLEAR VALUES' });
+		if (formValues.consent) {
+			handleAddUser(formValues);
+			dispatch({ type: 'CLEAR VALUES' });
+		} else {
+			dispatch({ type: 'THROW ERROR', errorValue: 'You need to give consent' });
+		}
 	};
 
 	return (
@@ -55,7 +71,18 @@ export const AddUser = () => {
 				onChange={handleInputChange}
 			/>
 			<FormField label='Average' id='average' name='average' value={formValues.average} onChange={handleInputChange} />
+			<FormField
+				label='Consent'
+				id='consent'
+				name='consent'
+				type='checkbox'
+				value={formValues.consent}
+				onChange={() => {
+					dispatch({ type: 'CONSENT TOGGLE' });
+				}}
+			/>
 			<Button type='submit'>Add</Button>
+			{formValues.error ? <p>{formValues.error}</p> : null}
 		</ViewWrapper>
 	);
 };
