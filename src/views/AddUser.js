@@ -23,7 +23,7 @@ export const AddUser = () => {
 		e.preventDefault();
 		if (formValues.consent) {
 			handleAddUser(formValues);
-			handleClearForm(initialFormState);
+			handleClearForm();
 		} else {
 			handleThrowError('You need to give consent');
 		}
