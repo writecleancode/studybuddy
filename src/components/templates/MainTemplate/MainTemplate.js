@@ -1,13 +1,7 @@
 import { Navigation } from 'components/organisms/Navigation/Navigation';
-import { Wrapper } from './MainTemplate.styles';
 import { SearchBar } from 'components/organisms/SearchBar/SearchBar';
-import styled from 'styled-components';
-
-export const News = styled.div`
-	grid-row: 1 / 3;
-	grid-column: 3 / 4;
-	border-left: 1px solid ${({ theme }) => theme.colors.darkPurple};
-`;
+import { NewsSection } from '../NewsSection/NewsSection';
+import { Wrapper } from './MainTemplate.styles';
 
 export const MainTemplate = ({ children }) => {
 	return (
@@ -15,7 +9,7 @@ export const MainTemplate = ({ children }) => {
 			<Navigation />
 			<SearchBar />
 			{children}
-			<News />
+			<NewsSection />
 		</Wrapper>
 	);
 };
