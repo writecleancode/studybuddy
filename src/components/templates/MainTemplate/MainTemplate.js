@@ -1,12 +1,7 @@
 import { Navigation } from 'components/organisms/Navigation/Navigation';
 import { Wrapper } from './MainTemplate.styles';
+import { SearchBar } from 'components/organisms/SearchBar/SearchBar';
 import styled from 'styled-components';
-
-export const SaerchBar = styled.div`
-	grid-row: 1 / 2;
-	grid-column: 2 / 3;
-	border-bottom: 1px solid ${({ theme }) => theme.colors.darkPurple};
-`;
 
 export const News = styled.div`
 	grid-row: 1 / 3;
@@ -18,7 +13,7 @@ export const MainTemplate = ({ children }) => {
 	return (
 		<Wrapper>
 			<Navigation />
-			<SaerchBar />
+			<SearchBar />
 			{children}
 			<News />
 		</Wrapper>
