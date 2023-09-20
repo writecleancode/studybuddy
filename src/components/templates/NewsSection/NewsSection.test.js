@@ -6,20 +6,6 @@ import { screen } from '@testing-library/react';
 
 const mock = new MockAdapter(axios);
 
-const query2 = `
-    {
-    allArticles {
-        id
-        title
-        category
-        content
-        image {
-            url
-            }
-        }
-    }
-`;
-
 describe('News Section', () => {
 	afterEach(() => {
 		mock.reset();

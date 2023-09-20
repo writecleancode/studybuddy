@@ -44,8 +44,8 @@ export const NewsSection = () => {
 		<Wrapper>
 			<NewsSectionHeader>University News Feed</NewsSectionHeader>
 			{articles.length ? (
-				articles.map(({ title, category, content, image = null }) => (
-					<ArticleWrapper key={title}>
+				articles.map(({ id, title, category, content, image = null }) => (
+					<ArticleWrapper key={id}>
 						<TitleWrapper>
 							<h3>{title}</h3>
 							<p>{category}</p>
