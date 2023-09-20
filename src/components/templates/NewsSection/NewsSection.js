@@ -14,17 +14,17 @@ export const NewsSection = () => {
 				{
 					query: `
 					{
-					allArticles {
-						id
-						title
-						category
-						content
-						image {
-							url
+						allArticles {
+							id
+							title
+							category
+							content
+							image {
+								url
+								}
+							}
 						}
-					}
-				}
-			`,
+					`,
 				},
 				{
 					headers: {
