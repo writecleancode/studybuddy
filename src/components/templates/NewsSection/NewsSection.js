@@ -3,8 +3,6 @@ import { ArticleWrapper, ContentWrapper, NewsSectionHeader, TitleWrapper, Wrappe
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-const API_TOKEN = 'da4e120f3de32f16d2570730ea60a2';
-
 export const NewsSection = () => {
 	const [articles, setArticles] = useState([]);
 	const [error, setError] = useState('');
@@ -30,7 +28,7 @@ export const NewsSection = () => {
 				},
 				{
 					headers: {
-						authorization: `Bearer ${API_TOKEN}`,
+						authorization: `Bearer ${process.env.REACT_APP_DATOCMS_TOKEN}`,
 					},
 				}
 			)
