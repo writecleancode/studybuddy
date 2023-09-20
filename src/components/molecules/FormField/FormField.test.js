@@ -4,6 +4,6 @@ import { FormField } from './FormField';
 
 describe('Form Field', () => {
 	it('Render the component', () => {
-		renderWithProviders(<FormField label='name' name='name' id='name' onChange={e => {}} />);
+		renderWithProviders(<FormField label='name' name='name' id='name' onChange={() => {}} />);
 	});
 });
