@@ -13,7 +13,7 @@ export const FormField = ({ label, name, id, type = 'text', value = '', checked 
 	return (
 		<Wrapper>
 			<Label htmlFor={id}>{label}</Label>
-			<Input name={name} id={id} type={type} value={value} onChange={onChange} data-testid={label} checked={checked} />
+			<Input name={name} id={id} type={type} value={value} onChange={onChange} checked={checked} data-testid={label} />
 		</Wrapper>
 	);
 };
