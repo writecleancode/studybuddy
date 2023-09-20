@@ -1,7 +1,7 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Button } from 'components/atoms/Button/Button';
 import { ArticleWrapper, ContentWrapper, NewsSectionHeader, TitleWrapper, Wrapper } from './NewsSection.styles';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 
 export const NewsSection = () => {
 	const [articles, setArticles] = useState([]);
