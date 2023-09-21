@@ -1,7 +1,7 @@
 import { UsersListItem } from 'components/molecules/UsersListItem/UsersListItem';
 import { StyledList, StyledTitle } from './UsersList.styles';
 
-export const UsersList = ({ users }) => {
+export const UsersList = ({ users = [] }) => {
 	return (
 		<>
 			<StyledList>
