@@ -18,10 +18,10 @@ export const Dashboard = () => {
 
 	useEffect(() => {
 		axios
-			.get(`/students/${id}`)
+			.get(`/students/${id || groups[0]}`)
 			.then(({ data }) => setStudents(data.students))
 			.catch(err => console.log(err));
-	}, [id]);
+	}, [id, groups]);
 
 	return (
 		<ViewWrapper>
