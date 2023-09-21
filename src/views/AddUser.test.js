@@ -1,10 +1,9 @@
-import '@testing-library/jest-dom';
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithProviders } from 'helpers/renderWithProviders';
 import { AddUser } from './AddUser';
 import { Dashboard } from './Dashboard';
 
-describe('Form Field 2', () => {
+describe('Add User', () => {
 	it('Adds new user to the list', () => {
 		renderWithProviders(
 			<>
