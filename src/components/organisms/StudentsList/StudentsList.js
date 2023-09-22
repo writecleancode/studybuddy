@@ -1,11 +1,20 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useStudents } from 'hooks/useStudents';
 import { UsersListItem } from 'components/molecules/UsersListItem/UsersListItem';
 import { StyledList, StyledTitle } from './StudentsList.styles';
 
-export const StudentsList = ({ users = [] }) => {
+export const StudentsList = () => {
+	const [students, setStudents] = useState([]);
+	const { getStudents } = useStudents();
 	const { id } = useParams();
-	const { students } = useStudents({ groupId: id });
+
+	useEffect(() => {
+		(async () => {
+			const students = await getStudents(id);
+			setStudents(students);
+		})();
+	}, [getStudents, id]);
 
 	return (
 		<>
