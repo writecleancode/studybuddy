@@ -14,17 +14,7 @@ export const SearchBar = () => {
 		setMatchingStudents(students);
 	}, 500);
 
-	const {
-		isOpen,
-		getToggleButtonProps,
-		getLabelProps,
-		getMenuProps,
-		getInputProps,
-		highlightedIndex,
-		getItemProps,
-		selectedItem,
-		selectItem,
-	} = useCombobox({
+	const { isOpen, getMenuProps, getInputProps, highlightedIndex, getItemProps } = useCombobox({
 		items: matchingStudents,
 		onInputValueChange: getMatchingStudents,
 	});
@@ -37,7 +27,7 @@ export const SearchBar = () => {
 			</StatusInfo>
 			<SearchWrapper>
 				<Input {...getInputProps()} placeholder='find student' name='Search' id='Search' />
-				<SearchResults {...getMenuProps()}>
+				<SearchResults $isVisible={isOpen && matchingStudents.length > 0} {...getMenuProps()}>
 					{isOpen &&
 						matchingStudents.map((item, index) => (
 							<SearchResultsItem

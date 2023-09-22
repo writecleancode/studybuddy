@@ -54,6 +54,7 @@ export const SearchResults = styled.ul`
 	background-color: ${({ theme }) => theme.colors.white};
 	box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.2);
 	list-style: none;
+	visibility: ${({ $isVisible }) => ($isVisible ? 'visible' : 'hidden')};
 	overflow-y: scroll;
 `;
 
@@ -65,7 +66,8 @@ export const SearchResultsItem = styled.li`
 	font-weight: bold;
 
 	&:hover {
-		background-color: ${({ theme }) => theme.colors.lightPurple};	}
+		background-color: ${({ theme }) => theme.colors.lightPurple};
+	}
 
 	&:not(:last-child) {
 		border-bottom: 1px solid ${({ theme }) => theme.colors.grey};
