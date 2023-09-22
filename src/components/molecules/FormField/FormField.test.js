@@ -1,8 +1,8 @@
-import { renderWithProviders } from 'helpers/renderWithProviders';
+import { render } from 'test-utils';
 import { FormField } from './FormField';
 
 describe('Form Field', () => {
 	it('Renders the component', () => {
-		renderWithProviders(<FormField label='name' name='name' id='name' onChange={() => {}} />);
+		render(<FormField label='name' name='name' id='name' onChange={() => {}} />);
 	});
 });

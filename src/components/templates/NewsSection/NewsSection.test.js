@@ -1,8 +1,8 @@
+import { render } from 'test-utils';
+import { screen } from '@testing-library/react';
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
-import { renderWithProviders } from 'helpers/renderWithProviders';
 import { NewsSection } from './NewsSection';
-import { screen } from '@testing-library/react';
 
 const mock = new MockAdapter(axios);
 
@@ -29,7 +29,7 @@ describe('News Section', () => {
 					`,
 			})
 			.reply(500);
-		renderWithProviders(<NewsSection />);
+		render(<NewsSection />);
 		await screen.findByText(/Sorry/);
 	});
 
@@ -51,7 +51,7 @@ describe('News Section', () => {
 					`,
 			})
 			.reply(200, { data: { allArticles: [{ id: 1, title: 'Test', category: 'test', content: 'test' }] } });
-		renderWithProviders(<NewsSection />);
+		render(<NewsSection />);
 		await screen.findAllByText(/Test/);
 	});
 });

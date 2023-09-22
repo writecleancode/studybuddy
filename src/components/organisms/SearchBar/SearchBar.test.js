@@ -18,8 +18,8 @@ describe('Search Bar', () => {
 
 	it('Displays users when search phrase is matching', async () => {
 		render(<SearchBar />);
-        const input = screen.getByPlaceholderText('find student');
-        fireEvent.change(input, { target: { value: 'ad'}})
-        await screen.findByText('Adam Romański')
+		const input = screen.getByPlaceholderText('find student');
+		fireEvent.change(input, { target: { value: 'ad' } });
+		await screen.findByText('Adam Romański');
 	});
 });
