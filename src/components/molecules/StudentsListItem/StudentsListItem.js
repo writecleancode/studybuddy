@@ -4,9 +4,9 @@ import { UserShape } from 'types';
 import { UsersContext } from 'providers/UsersProvider';
 import { StyledInfo } from 'components/atoms/StyledInfo/StyledInfo';
 import { DeleteButton } from 'components/atoms/DeleteButton/DeleteButton';
-import { StyledListItem, StyledAverage } from './UsersListItem.styles';
+import { StyledListItem, StyledAverage } from './StudentsListItem.styles';
 
-export const UsersListItem = ({ userData: { name, average, attendance = '0%' } }) => {
+export const StudentsListItem = ({ userData: { name, average, attendance = '0%' } }) => {
 	const { deleteUser } = useContext(UsersContext);
 
 	return (
@@ -18,6 +18,6 @@ export const UsersListItem = ({ userData: { name, average, attendance = '0%' } }
 	);
 };
 
-UsersListItem.propTypes = {
+StudentsListItem.propTypes = {
 	userData: PropTypes.shape(UserShape),
 };
