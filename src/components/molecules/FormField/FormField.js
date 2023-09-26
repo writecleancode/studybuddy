@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 	align-items: flex-start;
 `;
 
-export const FormField = ({ label, name, id, type = 'text', value = '', checked = '', onChange, ...props }) => {
+export const FormField = ({ label, name, id, type = 'text', value, checked = '', onChange, ...props }) => {
 	return (
 		<Wrapper>
 			<Label htmlFor={id}>{label}</Label>
