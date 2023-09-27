@@ -5,6 +5,7 @@ export const StyledListItem = styled.li`
 	align-items: center;
 	padding: 24px 0;
 	border-bottom: 1px solid #dfe2e8;
+	cursor: pointer;
 
 	&:last-child {
 		border-bottom: none;

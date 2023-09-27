@@ -4,7 +4,7 @@ import { useStudents } from 'hooks/useStudents';
 import { StudentsListItem } from 'components/molecules/StudentsListItem/StudentsListItem';
 import { StyledList, StyledTitle } from './StudentsList.styles';
 
-export const StudentsList = () => {
+export const StudentsList = ({ handleOpenStudentDetails }) => {
 	const [students, setStudents] = useState([]);
 	const { getStudents } = useStudents();
 	const { id } = useParams();
@@ -21,7 +21,7 @@ export const StudentsList = () => {
 			<StyledTitle>Student's list</StyledTitle>
 			<StyledList>
 				{students.map(userData => {
-					return <StudentsListItem key={userData.name} userData={userData} />;
+					return <StudentsListItem key={userData.name} userData={userData} onClick={() => {handleOpenStudentDetails(userData.id)}} />;
 				})}
 			</StyledList>
 		</>
