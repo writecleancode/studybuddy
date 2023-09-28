@@ -8,6 +8,7 @@ import { useModal } from 'hooks/useModal';
 
 export const Dashboard = () => {
 	const [groups, setGroups] = useState([]);
+	const [currentStudent, setCurrentStudent] = useState([]);
 	const { getGroups } = useStudents();
 	const { id } = useParams();
 	const { Modal, isOpen, handleOpenModal, handleCloseModal } = useModal();
@@ -20,7 +21,8 @@ export const Dashboard = () => {
 	}, [getGroups]);
 
 	const handleOpenStudentDetails = id => {
-		console.log(id);
+		setCurrentStudent(id);
+		handleOpenModal();
 	};
 
 	if (!id && groups.length > 0) return <Navigate to={`/group/${groups[0]}`} />;
@@ -39,7 +41,7 @@ export const Dashboard = () => {
 			</TitleWrapper>
 			<GroupWrapper>
 				<StudentsList handleOpenStudentDetails={handleOpenStudentDetails} />
-				{isOpen ? <Modal /> : null}
+				{isOpen ? <Modal handleClose={handleCloseModal}>{currentStudent}</Modal> : null}
 			</GroupWrapper>
 		</Wrapper>
 	);

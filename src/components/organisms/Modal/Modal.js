@@ -5,7 +5,7 @@ import { ModalWrapper } from './Modal.styles';
 
 const modalContainer = document.getElementById('modal-container');
 
-export const Modal = ({ handleClose }) => {
+export const Modal = ({ handleClose, children }) => {
 	const modalNode = document.createElement('div');
 
 	useEffect(() => {
@@ -18,7 +18,7 @@ export const Modal = ({ handleClose }) => {
 
 	return createPortal(
 		<ModalWrapper>
-			Volkswagen Golf IV
+			{children}
 			<Button onClick={handleClose}>Close modal</Button>
 		</ModalWrapper>,
 		modalNode
