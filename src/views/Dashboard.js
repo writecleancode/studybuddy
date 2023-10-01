@@ -1,15 +1,16 @@
-import { Link, Navigate, useParams } from 'react-router-dom';
-import { StudentsList } from 'components/organisms/StudentsList/StudentsList';
-import { useStudents } from 'hooks/useStudents';
-import { GroupWrapper, TitleWrapper, Wrapper } from './Dashboard.styles';
-import { StyledTitle } from 'components/atoms/StyledTitle/StyledTitle';
 import { useEffect, useState } from 'react';
+import { Link, Navigate, useParams } from 'react-router-dom';
+import { useStudents } from 'hooks/useStudents';
 import { useModal } from 'hooks/useModal';
+import { StudentsList } from 'components/organisms/StudentsList/StudentsList';
+import { StyledTitle } from 'components/atoms/StyledTitle/StyledTitle';
+import { GroupWrapper, TitleWrapper, Wrapper } from './Dashboard.styles';
+import { StyledAverage } from 'components/molecules/StudentsListItem/StudentsListItem.styles';
 
 export const Dashboard = () => {
 	const [groups, setGroups] = useState([]);
 	const [currentStudent, setCurrentStudent] = useState([]);
-	const { getGroups } = useStudents();
+	const { getGroups, getStudentById } = useStudents();
 	const { id } = useParams();
 	const { Modal, isOpen, handleOpenModal, handleCloseModal } = useModal();
 
@@ -20,8 +21,9 @@ export const Dashboard = () => {
 		})();
 	}, [getGroups]);
 
-	const handleOpenStudentDetails = id => {
-		setCurrentStudent(id);
+	const handleOpenStudentDetails = async id => {
+		const student = await getStudentById(id);
+		setCurrentStudent(student);
 		handleOpenModal();
 	};
 
@@ -41,7 +43,14 @@ export const Dashboard = () => {
 			</TitleWrapper>
 			<GroupWrapper>
 				<StudentsList handleOpenStudentDetails={handleOpenStudentDetails} />
-				{isOpen ? <Modal handleClose={handleCloseModal}>{currentStudent}</Modal> : null}
+				{isOpen ? (
+					<Modal handleClose={handleCloseModal}>
+						<StyledTitle>{currentStudent.name} | Group {currentStudent.group}</StyledTitle>
+						<p>{currentStudent.name}</p>
+						<StyledAverage $average={currentStudent.average}>{currentStudent.average}</StyledAverage>
+						<p>Attendance: {currentStudent.attendance}</p>
+					</Modal>
+				) : null}
 			</GroupWrapper>
 		</Wrapper>
 	);

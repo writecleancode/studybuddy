@@ -29,7 +29,7 @@ export const handlers = [
 	rest.get('/students/:id', (req, res, ctx) => {
 		if (req.params.id) {
 			const matchingStudent = students.find(student => student.id === req.params.id);
-			if (matchingStudent.length === 0) {
+			if (!matchingStudent) {
 				return res(
 					ctx.status(404),
 					ctx.json({
