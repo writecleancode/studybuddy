@@ -4,8 +4,8 @@ import { useStudents } from 'hooks/useStudents';
 import { useModal } from 'hooks/useModal';
 import { StudentsList } from 'components/organisms/StudentsList/StudentsList';
 import { StyledTitle } from 'components/atoms/StyledTitle/StyledTitle';
+import { StudentDetails } from 'components/molecules/StudentDetails/StudentDetails';
 import { GroupWrapper, TitleWrapper, Wrapper } from './Dashboard.styles';
-import { StyledAverage } from 'components/molecules/StudentsListItem/StudentsListItem.styles';
 
 export const Dashboard = () => {
 	const [groups, setGroups] = useState([]);
@@ -45,10 +45,7 @@ export const Dashboard = () => {
 				<StudentsList handleOpenStudentDetails={handleOpenStudentDetails} />
 				{isOpen ? (
 					<Modal handleClose={handleCloseModal}>
-						<StyledTitle>{currentStudent.name} | Group {currentStudent.group}</StyledTitle>
-						<p>{currentStudent.name}</p>
-						<StyledAverage $average={currentStudent.average}>{currentStudent.average}</StyledAverage>
-						<p>Attendance: {currentStudent.attendance}</p>
+						<StudentDetails student={currentStudent} />
 					</Modal>
 				) : null}
 			</GroupWrapper>
