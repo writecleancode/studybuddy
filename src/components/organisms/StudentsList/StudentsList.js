@@ -6,15 +6,15 @@ import { StyledList, StyledTitle } from './StudentsList.styles';
 
 export const StudentsList = ({ handleOpenStudentDetails }) => {
 	const [students, setStudents] = useState([]);
-	const { getStudents } = useStudents();
+	const { getStudentsByGroup } = useStudents();
 	const { id } = useParams();
 
 	useEffect(() => {
 		(async () => {
-			const students = await getStudents(id);
+			const students = await getStudentsByGroup(id);
 			setStudents(students);
 		})();
-	}, [getStudents, id]);
+	}, [getStudentsByGroup, id]);
 
 	return (
 		<>
