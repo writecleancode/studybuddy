@@ -4,6 +4,7 @@ import { useStudents } from 'hooks/useStudents';
 import { useModal } from 'hooks/useModal';
 import { StudentsList } from 'components/organisms/StudentsList/StudentsList';
 import { StyledTitle } from 'components/atoms/StyledTitle/StyledTitle';
+import { Modal } from 'components/organisms/Modal/Modal';
 import { StudentDetails } from 'components/molecules/StudentDetails/StudentDetails';
 import { GroupWrapper, TitleWrapper, Wrapper } from './Dashboard.styles';
 
@@ -12,7 +13,7 @@ export const Dashboard = () => {
 	const [currentStudent, setCurrentStudent] = useState([]);
 	const { getGroups, getStudentById } = useStudents();
 	const { id } = useParams();
-	const { Modal, isOpen, handleOpenModal, handleCloseModal } = useModal();
+	const { isOpen, handleOpenModal, handleCloseModal } = useModal();
 
 	useEffect(() => {
 		(async () => {
