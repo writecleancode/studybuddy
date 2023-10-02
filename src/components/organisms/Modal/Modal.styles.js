@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import ReactModal from 'react-modal';
 
-export const ModalWrapper = styled.div`
+export const ModalWrapper = styled(ReactModal)`
 	position: absolute;
 	top: 50%;
 	left: 50%;
