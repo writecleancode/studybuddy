@@ -8,29 +8,6 @@ import { Modal } from 'components/organisms/Modal/Modal';
 import { StudentDetails } from 'components/molecules/StudentDetails/StudentDetails';
 import { GroupWrapper, TitleWrapper, Wrapper } from './Dashboard.styles';
 
-const mockStudent = {
-	id: '1',
-	name: 'Adam Romański',
-	attendance: '39%',
-	average: '2.3',
-	group: 'A',
-	course: 'Business Philosophy',
-	grades: [
-		{
-			subject: 'Business Philosophy',
-			average: '3.3',
-		},
-		{
-			subject: 'Marketing',
-			average: '4.7',
-		},
-		{
-			subject: 'Modern Economy',
-			average: '2.5',
-		},
-	],
-};
-
 export const Dashboard = () => {
 	const [groups, setGroups] = useState([]);
 	const [currentStudent, setCurrentStudent] = useState([]);
@@ -68,7 +45,7 @@ export const Dashboard = () => {
 			<GroupWrapper>
 				<StudentsList handleOpenStudentDetails={handleOpenStudentDetails} />
 				<Modal isOpen={isOpen} handleClose={handleCloseModal}>
-					<StudentDetails student={mockStudent} />
+					<StudentDetails student={currentStudent} />
 				</Modal>
 			</GroupWrapper>
 		</Wrapper>
