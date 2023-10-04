@@ -28,7 +28,7 @@ export const Dashboard = () => {
 		handleOpenModal();
 	};
 
-	if (!id && groups.length > 0) return <Navigate to={`/group/${groups[0]}`} />;
+	if (!id && groups.length > 0) return <Navigate to={`/group/${groups[0].id}`} />;
 
 	return (
 		<Wrapper>

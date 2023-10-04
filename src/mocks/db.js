@@ -46,4 +46,11 @@ export const db = factory({
 			`${uppercaseFirstLatter(faker.company.buzzAdjective())} ${uppercaseFirstLatter(faker.company.buzzNoun())}`,
 		data: faker.date.soon,
 	},
+
+	teacher: {
+		id: primaryKey(() => '1'),
+		name: () => 'Jacek Sobczak',
+		login: () => 'teacher@studybuddy.com',
+		password: () => '1234',
+	},
 });
