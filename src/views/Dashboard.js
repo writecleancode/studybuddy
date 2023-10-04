@@ -10,7 +10,7 @@ import { GroupWrapper, TitleWrapper, Wrapper } from './Dashboard.styles';
 
 export const Dashboard = () => {
 	const [groups, setGroups] = useState([]);
-	const [currentStudent, setCurrentStudent] = useState([]);
+	const [currentStudent, setCurrentStudent] = useState(null);
 	const { getGroups, getStudentById } = useStudents();
 	const { id } = useParams();
 	const { isOpen, handleOpenModal, handleCloseModal } = useModal();
@@ -35,9 +35,9 @@ export const Dashboard = () => {
 			<TitleWrapper>
 				<StyledTitle as='h2'>Group {id}</StyledTitle>
 				<nav>
-					{groups.map(group => (
-						<Link key={group} to={`/group/${group}`}>
-							{group}
+					{groups.map(({ id }) => (
+						<Link key={id} to={`/group/${id}`}>
+							{id}{' '}
 						</Link>
 					))}
 				</nav>

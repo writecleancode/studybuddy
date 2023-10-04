@@ -1,10 +1,11 @@
 import { factory, primaryKey } from '@mswjs/data';
 import { faker } from '@faker-js/faker';
 
-faker.seed(2)
+faker.seed(1);
 
 const groups = ['A', 'B', 'C'];
-const getRandomGroup = index => groups[index];
+const eventTypes = ['workshop', 'exam', 'lecture'];
+const getRandomValue = (array, index) => array[index];
 const getRandomAverage = () => faker.number.float({ min: 2, max: 5, precision: 0.1 });
 const uppercaseFirstLatter = word => word.slice(0, 1).toUpperCase() + word.slice(1);
 
@@ -14,8 +15,9 @@ export const db = factory({
 		name: () => `${faker.person.firstName()} ${faker.person.lastName()}`,
 		attendance: () => `${faker.number.int({ min: 0, max: 100 })}%`,
 		average: getRandomAverage,
-		group: () => getRandomGroup(faker.number.int({ min: 0, max: 2 })),
-		course: () => `${uppercaseFirstLatter(faker.word.sample())} ${uppercaseFirstLatter(faker.word.sample())}`,
+		group: () => getRandomValue(groups, faker.number.int({ min: 0, max: 2 })),
+		course: () =>
+			`${uppercaseFirstLatter(faker.company.buzzAdjective())} ${uppercaseFirstLatter(faker.company.buzzNoun())}`,
 		grades: () => [
 			{
 				subject: 'Business Philosophy',
@@ -30,5 +32,18 @@ export const db = factory({
 				average: getRandomAverage(),
 			},
 		],
+	},
+
+	group: {
+		id: primaryKey(String),
+	},
+
+	event: {
+		id: primaryKey(faker.string.uuid),
+		type: () => getRandomValue(eventTypes, faker.number.int({ min: 0, max: 2 })),
+		group: () => getRandomValue(groups, faker.number.int({ min: 0, max: 2 })),
+		subject: () =>
+			`${uppercaseFirstLatter(faker.company.buzzAdjective())} ${uppercaseFirstLatter(faker.company.buzzNoun())}`,
+		data: faker.date.soon,
 	},
 });
