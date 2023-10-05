@@ -1,5 +1,5 @@
-import { groups } from 'mocks/handlers/groups';
-import { students } from 'mocks/handlers/students';
-import { auth } from 'mocks/handlers/auth';
+import { groups } from './groups';
+import { students } from './students';
+import { auth } from './auth';
 
 export const handlers = [...groups, ...students, ...auth];

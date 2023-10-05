@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Input } from 'components/atoms/Input/Input';
@@ -9,14 +10,14 @@ export const Wrapper = styled.div`
 	align-items: flex-start;
 `;
 
-export const FormField = ({ label, name, id, type = 'text', value, onChange, ...props }) => {
+export const FormField = forwardRef(({ label, name, id, type = 'text', value, onChange, ...props }, ref) => {
 	return (
 		<Wrapper>
 			<Label htmlFor={id}>{label}</Label>
-			<Input name={name} id={id} type={type} value={value} onChange={onChange} data-testid={label} />
+			<Input name={name} id={id} type={type} value={value} onChange={onChange} data-testid={label} ref={ref} {...props} />
 		</Wrapper>
 	);
-};
+});
 
 FormField.propTypes = {
 	label: PropTypes.string.isRequired,

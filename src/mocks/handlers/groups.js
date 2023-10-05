@@ -5,6 +5,7 @@ export const groups = [
 	rest.get('/groups', (req, res, ctx) => {
 		return res(ctx.status(200), ctx.json({ groups: db.group.getAll() }));
 	}),
+
 	rest.get('/groups/:id', (req, res, ctx) => {
 		if (req.params.id) {
 			const matchingStudents = db.student.findMany({

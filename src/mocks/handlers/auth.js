@@ -28,6 +28,7 @@ export const auth = [
 			})
 		);
 	}),
+
 	rest.get('/me', (req, res, ctx) => {
 		if (authenticateRequest(req)) {
 			const user = db.teacher.getAll();

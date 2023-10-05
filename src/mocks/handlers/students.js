@@ -34,6 +34,7 @@ export const students = [
 			})
 		);
 	}),
+
 	rest.post('/students/search', (req, res, ctx) => {
 		const matchingStudents = db.student.findMany({
 			where: {
