@@ -7,6 +7,9 @@ export const Navigation = () => {
 				<p>Study Buddy</p>
 			</Logo>
 			<StyledLink to='/group'>Dashboard</StyledLink>
+			<StyledLink as='a' onClick={() => localStorage.removeItem('token')}>
+				Sing Out
+			</StyledLink>
 		</Wrapper>
 	);
 };
