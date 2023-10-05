@@ -44,8 +44,15 @@ export const UnauthenticatedApp = ({ handleSignIn }) => {
 				alignItems: 'center',
 				minHeight: '100vh',
 			}}>
-			<FormField label='Login' name='login' id='login' {...register('login')} />
-			<FormField label='Password' name='password' id='password' type='password' {...register('password')} />
+			<FormField label='Login' name='login' id='login' {...register('login')} autoComplete='username' />
+			<FormField
+				label='Password'
+				name='password'
+				id='password'
+				type='password'
+				{...register('password')}
+				autoComplete='current-password'
+			/>
 			<Button type='submit'>Sign in</Button>
 		</form>
 	);
@@ -54,14 +61,16 @@ export const UnauthenticatedApp = ({ handleSignIn }) => {
 const Root = () => {
 	const [user, setUser] = useState(null);
 
-	const handleSignIn = ({ login, password }) => {
-		axios
-			.post('/login', {
+	const handleSignIn = async ({ login, password }) => {
+		try {
+			const response = await axios.post('/login', {
 				login,
 				password,
-			})
-			.then(res => console.log(res))
-			.catch(err => console.log(err));
+			});
+			setUser(response.data);
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	return (
