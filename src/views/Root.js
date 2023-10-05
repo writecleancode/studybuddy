@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
@@ -27,11 +27,7 @@ export const AuthenticatedApp = () => {
 };
 
 export const UnauthenticatedApp = ({ handleSignIn }) => {
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm();
+	const { register, handleSubmit } = useForm();
 	const onSubmit = ({ login, password }) => handleSignIn({ login, password });
 
 	return (
@@ -61,6 +57,24 @@ export const UnauthenticatedApp = ({ handleSignIn }) => {
 const Root = () => {
 	const [user, setUser] = useState(null);
 
+	useEffect(() => {
+		const token = localStorage.getItem('token');
+		if (token) {
+			(async () => {
+				try {
+					const response = await axios.get('/me', {
+						headers: {
+							authorization: `Bearer ${token}`,
+						},
+					});
+					setUser(response.data);
+				} catch (err) {
+					console.log(err);
+				}
+			})();
+		}
+	}, []);
+
 	const handleSignIn = async ({ login, password }) => {
 		try {
 			const response = await axios.post('/login', {
@@ -68,6 +82,7 @@ const Root = () => {
 				password,
 			});
 			setUser(response.data);
+			localStorage.setItem('token', response.data.token);
 		} catch (err) {
 			console.log(err);
 		}
