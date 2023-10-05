@@ -26,13 +26,16 @@ export const AuthenticatedApp = () => {
 	);
 };
 
-export const UnauthenticatedApp = ({ handleSignIn }) => {
-	const { register, handleSubmit } = useForm();
-	const onSubmit = ({ login, password }) => handleSignIn({ login, password });
+export const UnauthenticatedApp = ({ handleSignIn, loginError }) => {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
 
 	return (
 		<form
-			onSubmit={handleSubmit(onSubmit)}
+			onSubmit={handleSubmit(handleSignIn)}
 			style={{
 				display: 'flex',
 				flexDirection: 'column',
@@ -40,15 +43,24 @@ export const UnauthenticatedApp = ({ handleSignIn }) => {
 				alignItems: 'center',
 				minHeight: '100vh',
 			}}>
-			<FormField label='Login' name='login' id='login' {...register('login')} autoComplete='username' />
+			<FormField
+				label='Login'
+				name='login'
+				id='login'
+				{...register('login', { required: true })}
+				autoComplete='username'
+			/>
+			{errors.login && <span>Login is required</span>}
 			<FormField
 				label='Password'
 				name='password'
 				id='password'
 				type='password'
-				{...register('password')}
+				{...register('password', { required: true })}
 				autoComplete='current-password'
 			/>
+			{errors.password && <span>Password is required</span>}
+			{loginError && <span>{loginError}</span>}
 			<Button type='submit'>Sign in</Button>
 		</form>
 	);
@@ -56,6 +68,7 @@ export const UnauthenticatedApp = ({ handleSignIn }) => {
 
 const Root = () => {
 	const [user, setUser] = useState(null);
+	const [error, setError] = useState(null);
 
 	useEffect(() => {
 		const token = localStorage.getItem('token');
@@ -84,7 +97,7 @@ const Root = () => {
 			setUser(response.data);
 			localStorage.setItem('token', response.data.token);
 		} catch (err) {
-			console.log(err);
+			setError('Please provide valid user data');
 		}
 	};
 
@@ -92,7 +105,7 @@ const Root = () => {
 		<Router>
 			<ThemeProvider theme={theme}>
 				<GlobalStyle />
-				{user ? <AuthenticatedApp /> : <UnauthenticatedApp handleSignIn={handleSignIn} />}
+				{user ? <AuthenticatedApp /> : <UnauthenticatedApp loginError={error} handleSignIn={handleSignIn} />}
 			</ThemeProvider>
 		</Router>
 	);
