@@ -1,15 +1,11 @@
-import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import axios from 'axios';
+import { BrowserRouter as Routes, Route, Navigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { ThemeProvider } from 'styled-components';
-import { theme } from 'assets/styles/theme';
-import { GlobalStyle } from 'assets/styles/GlobalStyle';
 import { MainTemplate } from 'components/templates/MainTemplate/MainTemplate';
 import { Dashboard } from './Dashboard';
 import { FormField } from 'components/molecules/FormField/FormField';
 import { Button } from 'components/atoms/Button/Button';
 import { Wrapper } from './Root.styles';
+import { useAuth } from 'hooks/useAuth';
 
 export const AuthenticatedApp = () => {
 	return (
@@ -67,48 +63,9 @@ export const UnauthenticatedApp = ({ handleSignIn, loginError }) => {
 };
 
 const Root = () => {
-	const [user, setUser] = useState(null);
-	const [error, setError] = useState(null);
+	const auth = useAuth()
 
-	useEffect(() => {
-		const token = localStorage.getItem('token');
-		if (token) {
-			(async () => {
-				try {
-					const response = await axios.get('/me', {
-						headers: {
-							authorization: `Bearer ${token}`,
-						},
-					});
-					setUser(response.data);
-				} catch (err) {
-					console.log(err);
-				}
-			})();
-		}
-	}, []);
-
-	const handleSignIn = async ({ login, password }) => {
-		try {
-			const response = await axios.post('/login', {
-				login,
-				password,
-			});
-			setUser(response.data);
-			localStorage.setItem('token', response.data.token);
-		} catch (err) {
-			setError('Please provide valid user data');
-		}
-	};
-
-	return (
-		<Router>
-			<ThemeProvider theme={theme}>
-				<GlobalStyle />
-				{user ? <AuthenticatedApp /> : <UnauthenticatedApp loginError={error} handleSignIn={handleSignIn} />}
-			</ThemeProvider>
-		</Router>
-	);
+	return auth.user ? <AuthenticatedApp /> : <UnauthenticatedApp />;
 };
 
 export default Root;
