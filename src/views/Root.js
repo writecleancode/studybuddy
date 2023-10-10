@@ -1,10 +1,12 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useAuth } from 'hooks/useAuth';
+import { useError } from 'hooks/useError';
 import { MainTemplate } from 'components/templates/MainTemplate/MainTemplate';
 import { Dashboard } from './Dashboard';
 import { FormField } from 'components/molecules/FormField/FormField';
 import { Button } from 'components/atoms/Button/Button';
+import { ErrorMessage } from 'components/molecules/ErrorMessage/ErrorMessage';
 import { Wrapper } from './Root.styles';
 
 export const AuthenticatedApp = () => {
@@ -65,8 +67,14 @@ export const UnauthenticatedApp = () => {
 
 const Root = () => {
 	const auth = useAuth();
+	const { error } = useError();
 
-	return auth.user ? <AuthenticatedApp /> : <UnauthenticatedApp />;
+	return (
+		<>
+			{error ? <ErrorMessage /> : null}
+			{auth.user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+		</>
+	);
 };
 
 export default Root;

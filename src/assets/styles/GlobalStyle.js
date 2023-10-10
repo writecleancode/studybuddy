@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
 
     body {
         font-family: 'Montserrat', sans-serif;   
+        overflow-y: hidden;
     }
 
     a, button {
