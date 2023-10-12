@@ -10,6 +10,7 @@ export const Navigation = () => {
 				<p>Study Buddy</p>
 			</Logo>
 			<StyledLink to='/group'>Dashboard</StyledLink>
+			<StyledLink to='/notes'>Notes</StyledLink>
 			<StyledLink as='a' onClick={auth.signOut}>
 				Sign Out
 			</StyledLink>
