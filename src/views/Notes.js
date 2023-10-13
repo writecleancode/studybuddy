@@ -21,7 +21,7 @@ export const Notes = () => {
 			</FormWrapper>
 			<NotesWrapper>
 				{notes.length ? (
-					notes.map(({ title, content, id }) => <Note key={id} title={title} content={content} />)
+					notes.map(({ title, content, id }) => <Note key={id} id={id} title={title} content={content} />)
 				) : (
 					<p>Create your first note</p>
 				)}

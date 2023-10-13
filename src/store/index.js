@@ -19,13 +19,7 @@ export const removeNote = payload => {
 };
 
 const initialState = {
-	notes: [
-		{
-			id: uuid(),
-			title: 'Lorem ipsum',
-			content: 'Lorem ipsum dolor sit amet',
-		},
-	],
+	notes: [],
 };
 
 const notesReducer = (state = initialState, action) => {
@@ -36,7 +30,10 @@ const notesReducer = (state = initialState, action) => {
 				notes: [...state.notes, action.payload],
 			};
 		case 'notes/remove':
-			return {};
+			return {
+				...state,
+				notes: state.notes.filter(note => note.id !== action.payload.id),
+			};
 		default:
 			return state;
 	}
