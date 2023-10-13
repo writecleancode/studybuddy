@@ -6,7 +6,7 @@ export const addNote = payload => {
 		type: 'notes/add',
 		payload: {
 			id: uuid(),
-			payload,
+			...payload,
 		},
 	};
 };
