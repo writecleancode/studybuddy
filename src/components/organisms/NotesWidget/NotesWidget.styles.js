@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 	height: auto;
 	max-height: 700px;
 	background-color: white;
-	transform: ${({ isOpen }) => (isOpen ? 'translateX(0)' : 'translateX(400px)')};
+	transform: ${({ $isOpen }) => ($isOpen ? 'translateX(0)' : 'translateX(400px)')};
 	transition: transform 0.6s ease-in-out;
 `;
 
