@@ -13,7 +13,9 @@ const notesSlice = createSlice({
 				...action.payload,
 			});
 		},
-		removeNote(state, action) {},
+		removeNote(state, action) {
+			return state.filter(note => note.id !== action.payload.id);
+		},
 	},
 });
 
