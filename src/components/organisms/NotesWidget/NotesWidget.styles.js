@@ -31,6 +31,7 @@ export const NotesWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	padding: 20px 60px;
+	min-height: 110px;
 	max-height: 700px;
 	overflow-y: scroll;
 `;

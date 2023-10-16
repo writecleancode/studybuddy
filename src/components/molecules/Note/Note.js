@@ -21,7 +21,7 @@ export const Note = ({ id, title = 'Untitled', content = 'No content' }) => {
 };
 
 Note.propTypes = {
-	id: PropTypes.string.isRequired,
+	id: PropTypes.string,
 	title: PropTypes.string,
 	content: PropTypes.string,
 };
