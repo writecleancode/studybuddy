@@ -53,4 +53,10 @@ export const db = factory({
 		login: () => 'teacher@studybuddy.com',
 		password: () => '1234',
 	},
+
+	note: {
+		id: primaryKey(faker.string.uuid),
+		title: () => 'Lorem ipsum',
+		content: () => 'Lorem ipsum dolor sit amet',
+	},
 });

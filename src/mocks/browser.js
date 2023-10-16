@@ -11,6 +11,9 @@ const seed = () => {
 
 	db.teacher.create();
 
+	db.note.create();
+	db.note.create();
+
 	for (let i = 0; i < 16; i++) {
 		db.student.create();
 		db.event.create();
