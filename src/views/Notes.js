@@ -1,27 +1,20 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { addNote } from 'store';
 import { useForm } from 'react-hook-form';
+import { useGetNotesQuery, useAddNoteMutation } from 'store';
 import { Button } from 'components/atoms/Button/Button';
 import { Note } from 'components/molecules/Note/Note';
 import { FormWrapper, NotesWrapper, StyledFormField, Wrapper } from 'views/Notes.styles';
-import { useGetNotesQuery } from 'store';
-import { useEffect } from 'react';
 
 export const Notes = () => {
-	const dispatch = useDispatch();
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
 	const { data, isLoading } = useGetNotesQuery();
-
-	useEffect(() => {
-		console.log(data);
-	}, [data]);
+	const [addNote] = useAddNoteMutation();
 
 	const handleAddNote = ({ title, content }) => {
-		dispatch(addNote({ title, content }));
+		addNote({ title, content });
 	};
 
 	return (

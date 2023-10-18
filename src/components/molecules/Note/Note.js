@@ -1,14 +1,13 @@
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import { removeNote } from 'store';
+import { useRemoveNoteMutation } from 'store';
 import { StyledTitle } from 'components/atoms/StyledTitle/StyledTitle';
 import { NoteWrapper, StyledDeleteButton } from 'components/molecules/Note/Note.styles';
 
 export const Note = ({ id, title = 'Untitled', content = 'No content' }) => {
-	const dispatch = useDispatch();
+	const [removeNote] = useRemoveNoteMutation();
 
 	const handleRemoveNote = () => {
-		dispatch(removeNote({ id: id }));
+		removeNote({ id: id });
 	};
 
 	return (
