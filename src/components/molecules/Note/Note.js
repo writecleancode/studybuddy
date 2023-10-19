@@ -14,7 +14,7 @@ export const Note = ({ id, title = 'Untitled', content = 'No content' }) => {
 		<NoteWrapper>
 			<StyledTitle>{title}</StyledTitle>
 			<p>{content}</p>
-			<StyledDeleteButton onClick={handleRemoveNote} />
+			<StyledDeleteButton aria-label='Delete' onClick={handleRemoveNote} />
 		</NoteWrapper>
 	);
 };
