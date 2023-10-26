@@ -19,15 +19,6 @@ studentsAPI.interceptors.request.use(
 );
 
 export const useStudents = () => {
-	const getGroups = useCallback(async () => {
-		try {
-			const result = await studentsAPI.get('/groups');
-			return result.data.groups;
-		} catch (err) {
-			console.log(err);
-		}
-	}, []);
-
 	const getStudentById = useCallback(async studentId => {
 		try {
 			const result = await studentsAPI.get(`/students/${studentId}`);
@@ -58,7 +49,6 @@ export const useStudents = () => {
 	};
 
 	return {
-		getGroups,
 		getStudentsByGroup,
 		findStudents,
 		getStudentById,
