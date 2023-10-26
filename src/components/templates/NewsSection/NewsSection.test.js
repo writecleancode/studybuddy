@@ -2,7 +2,7 @@ import { render } from 'test-utils';
 import { screen } from '@testing-library/react';
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
-import { NewsSection } from './NewsSection';
+import { NewsSection, query } from './NewsSection';
 
 const mock = new MockAdapter(axios);
 
@@ -14,19 +14,7 @@ describe('News Section', () => {
 	it('Displays error if articles are not loaded correctly', async () => {
 		mock
 			.onPost('https://graphql.datocms.com/', {
-				query: `
-					{
-						allArticles {
-							id
-							title
-							category
-							content
-							image {
-								url
-								}
-							}
-						}
-					`,
+				query: query,
 			})
 			.reply(500);
 		render(<NewsSection />);
@@ -36,19 +24,7 @@ describe('News Section', () => {
 	it('Displays the articles', async () => {
 		mock
 			.onPost('https://graphql.datocms.com/', {
-				query: `
-					{
-						allArticles {
-							id
-							title
-							category
-							content
-							image {
-								url
-								}
-							}
-						}
-					`,
+				query: query,
 			})
 			.reply(200, { data: { allArticles: [{ id: 1, title: 'Test', category: 'test', content: 'test' }] } });
 		render(<NewsSection />);

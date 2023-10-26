@@ -3,6 +3,21 @@ import axios from 'axios';
 import { Button } from 'components/atoms/Button/Button';
 import { ArticleWrapper, ContentWrapper, NewsSectionHeader, TitleWrapper, Wrapper } from './NewsSection.styles';
 
+export const query = `
+{
+  allArticles {
+    id
+    title
+    category
+    content
+    image {
+      url
+      alt
+    }
+  }
+}
+`;
+
 export const NewsSection = () => {
 	const [articles, setArticles] = useState([]);
 	const [error, setError] = useState('');
@@ -12,19 +27,7 @@ export const NewsSection = () => {
 			.post(
 				'https://graphql.datocms.com/',
 				{
-					query: `
-					{
-						allArticles {
-							id
-							title
-							category
-							content
-							image {
-								url
-								}
-							}
-						}
-					`,
+					query: query,
 				},
 				{
 					headers: {
@@ -52,7 +55,7 @@ export const NewsSection = () => {
 						</TitleWrapper>
 						<ContentWrapper>
 							<p>{content}</p>
-							{image ? <img src={image.url} alt='article' /> : null}
+							{image ? <img src={image.url} alt={image.alt} /> : null}
 						</ContentWrapper>
 						<Button $isBig>Read more</Button>
 					</ArticleWrapper>

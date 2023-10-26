@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const notesApi = createApi({
+	reducerPath: 'notesApi',
 	baseQuery: fetchBaseQuery({
 		baseUrl: '/',
 	}),
@@ -32,9 +33,24 @@ const notesApi = createApi({
 
 export const { useGetNotesQuery, useAddNoteMutation, useRemoveNoteMutation } = notesApi;
 
+const groupsApi = createApi({
+	reducerPath: 'groupsApi',
+	baseQuery: fetchBaseQuery({
+		baseUrl: '/',
+	}),
+	endpoints: builder => ({
+		getGroups: builder.query({
+			query: () => 'groups',
+		}),
+	}),
+});
+
+export const { useGetGroupsQuery } = groupsApi;
+
 export const store = configureStore({
 	reducer: {
 		[notesApi.reducerPath]: notesApi.reducer,
+		[groupsApi.reducerPath]: groupsApi.reducer,
 	},
-	middleware: getDefaultMiddleware => getDefaultMiddleware().concat(notesApi.middleware),
+	middleware: getDefaultMiddleware => getDefaultMiddleware().concat(notesApi.middleware, groupsApi.middleware),
 });
