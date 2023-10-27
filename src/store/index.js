@@ -1,51 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { notesApi } from './api/notes';
+import { groupsApi } from './api/groups';
 
-const notesApi = createApi({
-	reducerPath: 'notesApi',
-	baseQuery: fetchBaseQuery({
-		baseUrl: '/',
-	}),
-	tagTypes: ['Notes'],
-	endpoints: builder => ({
-		getNotes: builder.query({
-			query: () => 'notes',
-			providesTags: ['Notes'],
-		}),
-		addNote: builder.mutation({
-			query: body => ({
-				url: 'notes',
-				method: 'POST',
-				body,
-			}),
-			invalidatesTags: ['Notes'],
-		}),
-		removeNote: builder.mutation({
-			query: body => ({
-				url: 'notes',
-				method: 'DELETE',
-				body,
-			}),
-			invalidatesTags: ['Notes'],
-		}),
-	}),
-});
-
-export const { useGetNotesQuery, useAddNoteMutation, useRemoveNoteMutation } = notesApi;
-
-const groupsApi = createApi({
-	reducerPath: 'groupsApi',
-	baseQuery: fetchBaseQuery({
-		baseUrl: '/',
-	}),
-	endpoints: builder => ({
-		getGroups: builder.query({
-			query: () => 'groups',
-		}),
-	}),
-});
-
-export const { useGetGroupsQuery } = groupsApi;
+export * from './api/notes'
+export * from './api/groups'
 
 export const store = configureStore({
 	reducer: {
