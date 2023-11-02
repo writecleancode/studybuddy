@@ -10,7 +10,7 @@ export const AuthenticatedApp = () => {
 			<Wrapper>
 				<Routes>
 					<Route path='/' element={<Navigate to='/group' />} />
-					<Route path='/group/' element={<Dashboard />}>
+					<Route path='/group/'>
 						<Route path=':id?' element={<Dashboard />} />
 					</Route>
 					<Route path='/notes' element={<Notes />} />

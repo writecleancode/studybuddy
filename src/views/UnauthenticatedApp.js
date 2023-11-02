@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { useAuth } from 'hooks/useAuth';
 import { FormField } from 'components/molecules/FormField/FormField';
 import { Button } from 'components/atoms/Button/Button';
-import { FormWrapper } from './Notes.styles';
+import { FormWrapper } from './UnauthenticatedApp.styles';
 
 export const UnauthenticatedApp = () => {
 	const auth = useAuth();

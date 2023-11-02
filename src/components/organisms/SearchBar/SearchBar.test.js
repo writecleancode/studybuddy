@@ -1,5 +1,4 @@
-import { render } from 'test-utils';
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from 'test-utils';
 import 'jest-styled-components';
 import { SearchBar } from './SearchBar';
 
@@ -10,7 +9,7 @@ describe('Search Bar', () => {
 		screen.getByPlaceholderText('find student');
 	});
 
-	it('Displays users when search aphrase is matching', async () => {
+	it('Displays users when search phrase is matching', async () => {
 		render(<SearchBar />);
 		const input = screen.getByPlaceholderText('find student');
 		fireEvent.change(input, { target: { value: 'Ko' } });

@@ -1,5 +1,4 @@
-import { render } from 'test-utils';
-import { screen } from '@testing-library/react';
+import { render, screen } from 'test-utils';
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
 import { NewsSection, query } from './NewsSection';

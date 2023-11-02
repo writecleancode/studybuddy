@@ -27,14 +27,14 @@ export const SearchBar = () => {
 			</StatusInfo>
 			<SearchWrapper>
 				<Input {...getInputProps()} placeholder='find student' name='Search' id='Search' />
-				<SearchResults $isVisible={isOpen && matchingStudents.length > 0} {...getMenuProps()} aria-label='results'>
+				<SearchResults $isVisible={isOpen && matchingStudents.length} {...getMenuProps()} aria-label='results'>
 					{isOpen &&
-						matchingStudents.map((item, index) => (
+						matchingStudents.map((student, index) => (
 							<SearchResultsItem
 								$isHighlighted={highlightedIndex === index}
-								{...getItemProps({ item, index })}
-								key={item.id}>
-								{item.name}
+								{...getItemProps({ item: student, index })}
+								key={student.id}>
+								{student.name}
 							</SearchResultsItem>
 						))}
 				</SearchResults>

@@ -39,7 +39,7 @@ export const Dashboard = () => {
 				<nav>
 					{data.groups.map(({ id }) => (
 						<Link key={id} to={`/group/${id}`}>
-							{id}{' '}
+							{id}
 						</Link>
 					))}
 				</nav>
